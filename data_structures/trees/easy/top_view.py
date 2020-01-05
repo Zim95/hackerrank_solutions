@@ -72,6 +72,7 @@ def printRight(root):
 
 def topView(root):
     # Write your code here
+    import pdb; pdb.set_trace()
     if root.left:
         left_list = printLeft(root.left)
     else:
