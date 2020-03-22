@@ -1,11 +1,5 @@
 #!/bin/python3
 
-import math
-import os
-import random
-import re
-import sys
-
 
 def weightedUniformStrings(s, queries):
     weights = {
@@ -18,7 +12,6 @@ def weightedUniformStrings(s, queries):
         'q': 17, 'w': 23
     }
 
-    import pdb; pdb.set_trace()
     print(s)
     frequency_dict = dict([(item, s.count(item))for item in set(s)])
     print(s)
