@@ -1,13 +1,6 @@
 #!/bin/python3
 
 
-import math
-import os
-import random
-import re
-import sys
-
-
 '''
 Problem - https://www.hackerrank.com/challenges/
 staircase/problem?h_r=next-challenge&h_v=zen

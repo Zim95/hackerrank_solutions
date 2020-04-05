@@ -1,46 +1,39 @@
 #!/bin/python3
 
 
+import os
+
+
+'''
+Problem - https://www.hackerrank.com/
+challenges/weighted-uniform-string/problem
+'''
+
+
 def weightedUniformStrings(s, queries):
-    weights = {
-        'z': 26, 'h': 8, 'p': 16, 'e': 5,
-        't': 20, 'v': 22, 'r': 18, 'd': 4,
-        'a': 1, 'f': 6, 'u': 21, 'j': 10,
-        'c': 3, 'g': 7, 'o': 15, 'k': 11,
-        'b': 2, 'n': 14, 'i': 9, 'x': 24,
-        'y': 25, 'm': 13, 'l': 12, 's': 19,
-        'q': 17, 'w': 23
-    }
-
-    print(s)
-    frequency_dict = dict([(item, s.count(item))for item in set(s)])
-    print(s)
-
-    # the base weight of any one key of freqeueny dict should divide
-    # the query number
-    # then the count of the item should be greater than or equal to the
-    # the quotient
+    numbers = set()
+    prev_char = -1
+    length = 0
+    for char in s:
+        weight = ord(char) - ord('a') + 1
+        if char == prev_char:
+            length += 1
+            numbers.add(weight * length)
+        else:
+            prev_char = char
+            length = 1
+            numbers.add(weight)
     result = []
     for query in queries:
-        status = 'No'
-        for item, count in frequency_dict.items():
-            item_weight = weights[item]
-            remainder = query % item_weight
-            if not remainder:
-                quotient = query / item_weight
-                if count >= quotient:
-                    status = 'Yes'
-                    break
-                else:
-                    continue
-            else:
-                continue
-        result.append(status)
+        if query in numbers:
+            result.append('Yes')
+        else:
+            result.append('No')
     return result
 
 
 if __name__ == '__main__':
-    # fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
 
     s = input()
 
@@ -54,8 +47,7 @@ if __name__ == '__main__':
 
     result = weightedUniformStrings(s, queries)
 
-    print(','.join(result))
-    # fptr.write('\n'.join(result))
-    # fptr.write('\n')
+    fptr.write('\n'.join(result))
+    fptr.write('\n')
 
-    # fptr.close()
+    fptr.close()
